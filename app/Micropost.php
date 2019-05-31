@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Micropost extends Model
 {
-    protected $fillable = ['content', 'user_id'];
+    protected $fillable = ['content', 'user_id','micropost_id'];
 
     public function user()
     {
@@ -15,6 +15,6 @@ class Micropost extends Model
     
     public function favorite_users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Micropost::class,'favorites', 'user_id', 'micropost_id');
     }
 }
